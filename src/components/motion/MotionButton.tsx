@@ -6,7 +6,7 @@ import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart'> {
   variant?: Variant;
   icon?: React.ReactNode;
   children?: React.ReactNode;
