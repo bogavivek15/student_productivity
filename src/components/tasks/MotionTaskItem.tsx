@@ -77,9 +77,10 @@ export const MotionTaskItem: React.FC<Props> = ({ task, onStatusChange, onDelete
         group relative flex items-start gap-3 p-3 rounded-xl
         bg-white dark:bg-surface-850
         border border-surface-200/50 dark:border-surface-700/40
-        transition-colors duration-150
+        transition-colors duration-150 overflow-visible
         ${done ? 'opacity-60' : ''}
       `}
+      style={{ zIndex: showPopup ? 100 : 'auto' }}
     >
       {/* Drag handle */}
       <span className="flex-shrink-0 mt-1 cursor-grab opacity-0 group-hover:opacity-40 transition-opacity">
@@ -130,7 +131,7 @@ export const MotionTaskItem: React.FC<Props> = ({ task, onStatusChange, onDelete
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -4 }}
               transition={{ duration: 0.15 }}
-              className="absolute left-0 top-8 z-50 w-40 py-1 rounded-lg bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-lg"
+              className="absolute left-0 bottom-8 z-[100] w-40 py-1 rounded-lg bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-lg"
             >
               <button
                 onClick={() => { onStatusChange(task.id, 'in-progress'); setShowPopup(false); }}
@@ -202,7 +203,7 @@ export const MotionTaskItem: React.FC<Props> = ({ task, onStatusChange, onDelete
         whileTap={reduced ? undefined : { scale: 0.9 }}
         className="
           flex-shrink-0 p-1.5 rounded-lg
-          opacity-0 group-hover:opacity-100
+          opacity-100 sm:opacity-0 sm:group-hover:opacity-100
           hover:bg-danger-500/10 text-surface-400 hover:text-danger-500
           transition-all duration-150
           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-danger-400

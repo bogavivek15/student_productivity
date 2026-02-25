@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════
--- StudyFlow Demo Seed — Run AFTER signing up as admin@studyflow.com
+-- StudyFlow Demo Seed — Run AFTER signing up as bogavivek15@gmail.com
 -- Populates the demo account with showcase-ready mock data
 -- ═══════════════════════════════════════════════════════════════
 
@@ -10,16 +10,16 @@ BEGIN
   -- Find the demo user
   SELECT id INTO demo_uid
   FROM auth.users
-  WHERE email = 'admin@studyflow.com'
+  WHERE email = 'bogavivek15@gmail.com'
   LIMIT 1;
 
   IF demo_uid IS NULL THEN
-    RAISE EXCEPTION 'Demo user not found. Sign up as admin@studyflow.com first!';
+    RAISE EXCEPTION 'Demo user not found. Sign up as bogavivek15@gmail.com first!';
   END IF;
 
   -- ── Update profile with showcase data ──
   UPDATE user_profile
-  SET name = 'Vikram', daily_goal = 5, streak = 7
+  SET name = 'Vivek', daily_goal = 5, streak = 7
   WHERE user_id = demo_uid;
 
   -- ── Seed tasks ──

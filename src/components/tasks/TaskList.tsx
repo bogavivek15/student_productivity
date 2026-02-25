@@ -31,7 +31,7 @@ export const TaskList: React.FC<Props> = ({ tasks, onStatusChange, onDelete }) =
   return (
     <div>
       {/* Filter tabs */}
-      <div className="flex items-center gap-1 mb-4 p-1 rounded-lg bg-surface-100/60 dark:bg-surface-800/60 w-fit">
+      <div className="flex items-center gap-1 mb-4 p-1 rounded-lg bg-surface-100/60 dark:bg-surface-800/60 w-full sm:w-fit overflow-x-auto">
         {filters.map((f) => (
           <button
             key={f.value}

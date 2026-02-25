@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════
    App.tsx — Root application shell
    Auth-gated: shows AuthPage for guests, app shell for students
+   Mobile-first: bottom nav on mobile, sidebar on desktop
    ═══════════════════════════════════════════════════════════════ */
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
 /* Layout */
 import { MotionSidebar } from './components/layout/MotionSidebar';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { Header } from './components/layout/Header';
 
 /* Pages */
@@ -64,6 +66,13 @@ const App: React.FC = () => {
   /* ── Confetti for streak milestones ── */
   const [showConfetti, setShowConfetti] = useState(false);
 
+  /* ── Search handler: navigate to tasks page with search query ── */
+  const [searchQuery, setSearchQuery] = useState('');
+  const handleSearchSelect = useCallback((taskId: string) => {
+    setRoute('tasks');
+    setSearchQuery('');
+  }, []);
+
   /* ── Full-screen loading on initial auth check ── */
   if (authLoading && !session) {
     return (
@@ -92,7 +101,7 @@ const App: React.FC = () => {
   const renderPage = () => {
     if (dataLoading) {
       return (
-        <div className="p-6 max-w-3xl mx-auto">
+        <div className="p-4 sm:p-6 max-w-3xl mx-auto">
           <SkeletonLoader rows={6} />
         </div>
       );
@@ -122,21 +131,30 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-surface-50 dark:bg-surface-950 text-surface-900 dark:text-surface-100 overflow-hidden">
-      {/* Sidebar */}
-      <MotionSidebar
-        currentRoute={route}
-        onNavigate={setRoute}
-        collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed((p) => !p)}
-        onLogout={signOut}
-      />
+      {/* Sidebar — hidden on mobile */}
+      <div className="hidden md:block">
+        <MotionSidebar
+          currentRoute={route}
+          onNavigate={setRoute}
+          collapsed={sidebarCollapsed}
+          onToggleCollapse={() => setSidebarCollapsed((p) => !p)}
+          onLogout={signOut}
+        />
+      </div>
 
       {/* Main content area */}
       <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-        <Header userName={user.name} streak={user.streak} email={authUser?.email} />
+        <Header
+          userName={user.name}
+          streak={user.streak}
+          email={authUser?.email}
+          tasks={tasks}
+          onSearchSelect={handleSearchSelect}
+          onNavigateToTasks={() => setRoute('tasks')}
+        />
 
         {/* Page content with animated transitions */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden pb-16 md:pb-0">
           <AnimatePresence mode="wait">
             <AnimatedPageWrapper key={route} pageKey={route}>
               {renderPage()}
@@ -144,6 +162,13 @@ const App: React.FC = () => {
           </AnimatePresence>
         </main>
       </div>
+
+      {/* Mobile bottom nav — visible only on mobile */}
+      <MobileBottomNav
+        currentRoute={route}
+        onNavigate={setRoute}
+        onLogout={signOut}
+      />
 
       {/* Overlays */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />

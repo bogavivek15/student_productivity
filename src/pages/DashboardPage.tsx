@@ -58,19 +58,19 @@ export const DashboardPage: React.FC<Props> = ({ tasks, stats, user }) => {
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="p-6 space-y-6 max-w-6xl mx-auto"
+      className="p-4 sm:p-6 space-y-4 sm:space-y-6 max-w-6xl mx-auto"
     >
       {/* ── Row 1: Greeting & Streak ── */}
       <motion.div variants={staggerItem} className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-surface-900 dark:text-white">Dashboard</h2>
-          <p className="text-sm text-surface-500 mt-0.5">Here's your productivity snapshot</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Dashboard</h2>
+          <p className="text-xs sm:text-sm text-surface-500 mt-0.5">Here's your productivity snapshot</p>
         </div>
         <StreakBadge streak={user.streak} />
       </motion.div>
 
       {/* ── Row 2: Metric cards ── */}
-      <motion.div variants={staggerItem} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <motion.div variants={staggerItem} className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {metrics.map((m, i) => (
           <MotionCard key={m.label} delay={i * 0.06} className="p-4 group">
             <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${m.color} opacity-60`} />
@@ -121,7 +121,7 @@ export const DashboardPage: React.FC<Props> = ({ tasks, stats, user }) => {
       </motion.div>
 
       {/* ── Row 4: Charts side by side ── */}
-      <motion.div variants={staggerItem} className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <motion.div variants={staggerItem} className="grid grid-cols-1 gap-3 sm:gap-4 lg:grid-cols-2">
         {/* Tasks completed chart */}
         <MotionCard className="p-5">
           <h3 className="text-sm font-semibold text-surface-800 dark:text-surface-100 mb-4">

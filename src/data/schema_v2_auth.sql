@@ -5,9 +5,20 @@
 -- ═══════════════════════════════════════════════════════════════
 
 -- ── 0. Clean up old policies & tables ──
-DROP POLICY IF EXISTS "Allow all on tasks"       ON tasks;
-DROP POLICY IF EXISTS "Allow all on daily_stats" ON daily_stats;
-DROP POLICY IF EXISTS "Allow all on user_profile" ON user_profile;
+DO $$ BEGIN
+  IF EXISTS (SELECT 1 FROM pg_tables WHERE tablename = 'tasks') THEN
+    DROP POLICY IF EXISTS "Allow all on tasks"       ON tasks;
+    DROP POLICY IF EXISTS "Users manage own tasks"    ON tasks;
+  END IF;
+  IF EXISTS (SELECT 1 FROM pg_tables WHERE tablename = 'daily_stats') THEN
+    DROP POLICY IF EXISTS "Allow all on daily_stats" ON daily_stats;
+    DROP POLICY IF EXISTS "Users manage own stats"   ON daily_stats;
+  END IF;
+  IF EXISTS (SELECT 1 FROM pg_tables WHERE tablename = 'user_profile') THEN
+    DROP POLICY IF EXISTS "Allow all on user_profile" ON user_profile;
+    DROP POLICY IF EXISTS "Users manage own profile"  ON user_profile;
+  END IF;
+END $$;
 
 DROP TABLE IF EXISTS tasks CASCADE;
 DROP TABLE IF EXISTS daily_stats CASCADE;

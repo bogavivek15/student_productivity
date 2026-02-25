@@ -36,11 +36,11 @@ export const TasksPage: React.FC<Props> = ({ tasks, onAdd, onStatusChange, onDel
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="p-6 max-w-3xl mx-auto"
+        className="p-4 sm:p-6 max-w-3xl mx-auto"
       >
         <motion.div variants={staggerItem} className="mb-6">
-          <h2 className="text-2xl font-bold text-surface-900 dark:text-white">Tasks</h2>
-          <p className="text-sm text-surface-500 mt-0.5">
+          <h2 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Tasks</h2>
+          <p className="text-xs sm:text-sm text-surface-500 mt-0.5">
             Manage your assignments, study goals and projects
           </p>
         </motion.div>

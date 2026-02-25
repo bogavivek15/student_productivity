@@ -17,35 +17,42 @@
     @apply bg-surface-50 text-surface-900 dark:bg-surface-950 dark:text-surface-100;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+}
 
-  /* Custom scrollbar — subtle & calm */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+/* ── Safe area for mobile bottom nav (iPhone notch etc.) ── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
   }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply bg-surface-300 dark:bg-surface-700 rounded-full;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-surface-400 dark:bg-surface-600;
-  }
+}
 
-  /* Focus ring for keyboard navigation */
-  *:focus-visible {
-    @apply outline-none ring-2 ring-accent-400 ring-offset-2 dark:ring-offset-surface-900;
-  }
+/* Custom scrollbar — subtle & calm */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-surface-300 dark:bg-surface-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-surface-400 dark:bg-surface-600;
+}
 
-  /* Reduced motion: disable all animations */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+/* Focus ring for keyboard navigation */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent-400 ring-offset-2 dark:ring-offset-surface-900;
+}
+
+/* Reduced motion: disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

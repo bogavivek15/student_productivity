@@ -19,26 +19,22 @@ export const MotionInput: React.FC<Props> = ({
 }) => {
   const [focused, setFocused] = useState(false);
   const id = useId();
-  const hasValue = value !== undefined && value !== '';
-  const isFloating = focused || hasValue;
 
   return (
     <div className={`relative ${className}`}>
-      {/* Floating label */}
+      {/* Label above input */}
       {label && (
         <motion.label
           htmlFor={id}
           animate={{
-            y: isFloating ? -22 : 0,
-            scale: isFloating ? 0.85 : 1,
             color: focused
               ? 'rgb(99,102,241)'
               : error
                 ? 'rgb(239,68,68)'
-                : 'rgb(113,113,122)',
+                : 'rgb(161,161,170)',
           }}
           transition={{ duration: duration.quick, ease: easing.easeFluid }}
-          className="absolute left-3 top-2.5 origin-left pointer-events-none text-sm"
+          className="block mb-1.5 text-xs font-medium"
         >
           {label}
         </motion.label>
@@ -47,14 +43,15 @@ export const MotionInput: React.FC<Props> = ({
       <input
         id={id}
         value={value}
+        placeholder={label}
         onFocus={(e) => { setFocused(true); onFocus?.(e); }}
         onBlur={(e) => { setFocused(false); onBlur?.(e); }}
         className={`
-          w-full px-3 pt-2.5 pb-2 rounded-lg text-sm
+          w-full px-3 py-2.5 rounded-lg text-sm
           bg-surface-50 dark:bg-surface-800
           border transition-colors duration-150
           text-surface-900 dark:text-surface-100
-          placeholder:text-surface-400
+          placeholder:text-surface-400 dark:placeholder:text-surface-500
           focus:outline-none
           ${
             error

@@ -21,11 +21,11 @@ export const SettingsPage: React.FC<Props> = ({ user, onUpdateProfile }) => {
       variants={staggerContainer}
       initial="hidden"
       animate="visible"
-      className="p-6 max-w-2xl mx-auto space-y-6"
+      className="p-4 sm:p-6 max-w-2xl mx-auto space-y-4 sm:space-y-6"
     >
       <motion.div variants={staggerItem}>
-        <h2 className="text-2xl font-bold text-surface-900 dark:text-white">Settings</h2>
-        <p className="text-sm text-surface-500 mt-0.5">Customize your workspace</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-surface-900 dark:text-white">Settings</h2>
+        <p className="text-xs sm:text-sm text-surface-500 mt-0.5">Customize your workspace</p>
       </motion.div>
 
       {/* Appearance */}
