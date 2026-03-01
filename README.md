@@ -165,8 +165,8 @@ The app will be available at **http://localhost:5173** (or the next available po
 | Field | Value |
 |-------|-------|
 | **Name** | Vikram |
-| **Email** | `admin@studyflow.com` |
-| **Password** | `123456` |
+| **Email** | `bogavivek15@gmail.com` |
+| **Password** | `111111` |
 
 > **Note:** Sign up with these credentials first, then run `seed_demo.sql` in Supabase SQL Editor to see pre-populated dashboard data.
 
@@ -240,5 +240,5 @@ This project is built for educational and demonstration purposes.
 ---
 
 <p align="center">
-  Built with ❤️ by <strong>Vikram</strong>
+  Built with ❤️ by <strong>Vivek</strong>
 </p>
