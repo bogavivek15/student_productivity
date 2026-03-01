@@ -164,7 +164,7 @@ The app will be available at **http://localhost:5173** (or the next available po
 
 | Field | Value |
 |-------|-------|
-| **Name** | Vikram |
+| **Name** | Vivek |
 | **Email** | `bogavivek15@gmail.com` |
 | **Password** | `111111` |
 
