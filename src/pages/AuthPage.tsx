@@ -224,7 +224,7 @@ export const AuthPage: React.FC<Props> = ({
             <p className="mt-4 text-center text-xs text-surface-400">
               {mode === 'signin' ? (
                 <>
-                  Don\u2019t have an account?{' '}
+                  Dont have an account?{' '}
                   <button
                     onClick={() => switchMode('signup')}
                     className="text-accent-500 hover:text-accent-600 font-medium"
